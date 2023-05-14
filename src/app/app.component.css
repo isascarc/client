@@ -1,0 +1,71 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 5px;
+}
+
+
+/**/
+.example-chip-list {
+  width: 100%;
+}
+
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 220px;
+  text-align: center;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+/*----------*/
+mat-form-field {
+  margin-right: 12px;
+}
+
+
+.card {
+  width: 500px;
+  margin: 50px auto auto auto;
+}
