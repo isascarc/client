@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ExtensionsService } from '../_services/jobs.service';
+import { JobsService } from '../_services/jobs.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Job } from '../_modules/job';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +14,7 @@ export class SearchComponent {
   searchForm: FormGroup = new FormGroup({});
   addonData: any | undefined;
 
-  constructor(private fb: FormBuilder, public extensionsService: ExtensionsService, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, public extensionsService: JobsService, private _snackBar: MatSnackBar) { }
 
   autoTicks = false;
   includeWithoutSalry = false;
@@ -47,7 +48,7 @@ export class SearchComponent {
     '++C/C',
     'חומרה',];
 
-  jobs = [];
+  jobs: Job[] = [];
   ngOnInit(): void {
     this.initializeForm();
   }

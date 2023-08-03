@@ -36,6 +36,8 @@ import { Routes } from '@angular/router';
 import { JobCreateComponent } from './jobs/job-create/job-create.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+
+import { ToastrModule  } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,9 @@ import {MatMenuModule} from '@angular/material/menu';
     BrowserModule,
     AppRoutingModule,
 
+    ToastrModule.forRoot({
+      positionClass:'toast-bottom-right'
+    }),
     
     HttpClientModule,
     MatButtonModule,

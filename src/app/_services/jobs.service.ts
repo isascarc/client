@@ -1,35 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { ToastrService } from 'ngx-toastr';
+import { Job } from '../_modules/job';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExtensionsService {
-  baseUrl = 'http://localhost:5041/Jobs/';
-  baseUrlGetJob = 'http://localhost:5041/weatherforecast/GetJob?';
+export class JobsService {
+  baseUrl = 'http://localhost:5001/Jobs/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private toaster:ToastrService) { }
 
   public searchJobs(query: any) {
-    return this.http.get<any>(`${this.baseUrlGetJob}query=${query.toppings}&withoutsalry=${query.withoutSalry}&haveToar=${query.haveToar}
-    &salry=${query.salry}`);
+    return this.http.get<Job[]>(`${this.baseUrl}GetJobs?haveToar=${query.haveToar}&salary=${query.salry}&haveEnglish=${query.haveEnglish}`);
   }
 
   public createJob(query: any) {
-    const requestBody = {
-      query: 'your query',
-      salry: "1000",
-      haveEnglish: "true",
-      profession: 'your profession',
-      toppings: 'your toppings',
-      haveToar: "true",
-      area: 'your area',
-      other: 'your other',
-      withoutSalry: 'your withoutSalry'
-    };
-
-    console.log(99)
-    return this.http.post<boolean>(`${this.baseUrl}create`,requestBody);
+    return this.http.post<boolean>(`${this.baseUrl}create`,query);
   }
+ 
 }

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ExtensionsService } from 'src/app/_services/jobs.service';
-
+import { ToastrService } from 'ngx-toastr';
+import { JobsService } from 'src/app/_services/jobs.service';
+ 
 @Component({
   selector: 'app-job-create',
   templateUrl: './job-create.component.html',
@@ -15,7 +16,7 @@ export class JobCreateComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({});
   addonData: any | undefined;
 
-  constructor(private fb: FormBuilder, private jobService: ExtensionsService) { }
+  constructor(private fb: FormBuilder, private jobService: JobsService,  private toaster:ToastrService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -23,14 +24,15 @@ export class JobCreateComponent implements OnInit {
 
   initializeForm() {
     this.searchForm = this.fb.group({
-      salry: [''],
+      salary: [0],
       withoutSalry: [''],
-      haveEnglish: [''],
+      haveEnglish: [true],
       profession: [''],
       toppings: [''],
-      haveToar: [''],
+      haveToar: [false],
       area: [''],
       other: [''],
+      jobDetails:''
     });
   }
 
@@ -58,20 +60,22 @@ export class JobCreateComponent implements OnInit {
   areasList: string[] = ['צפון', 'שפלה', 'מרכז', 'דרום', 'יהודה ושומרון', 'ירושלים'];
 
 
+
+
+
   cancel() {
     this.cancelCreate.emit(false);
   }
-  onSubmit() {
-    // Handle the form submission logic here
-    console.log('Form submitted!');
-  }
 
   createJob() {
-    console.log(9);
+    console.log(this.searchForm?.value)
      this.jobService.createJob(this.searchForm?.value).subscribe({
        next: _ => {
-         console.log('הפרופיל עודכן בהצלחה');
-         this.searchForm?.reset();
+        this.toaster.success('המשרה נוצרה בהצלחה');
+         //this.searchForm?.reset();
+       },
+       error: _=>{
+        this.toaster.error('נראה שהתרחשה תקלה. נסה שנית');
        }
      })
   }

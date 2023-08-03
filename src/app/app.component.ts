@@ -1,6 +1,6 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ExtensionsService } from './_services/jobs.service';
+import { JobsService } from './_services/jobs.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -15,16 +15,16 @@ export class AppComponent implements OnInit {
   addonData: any | undefined;
 
 
-  constructor(private fb: FormBuilder, public extensionsService: ExtensionsService, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, public jobsService: JobsService, private _snackBar: MatSnackBar) { }
 
 
   autoTicks = false;
   includeWithoutSalry = false;
   haveToar = false;
-  
+
   max = 50;
   min = 8;
-  step = 2;  
+  step = 2;
   value = 12;
 
   toppings = new FormControl('');
@@ -38,15 +38,15 @@ export class AppComponent implements OnInit {
 
     'Angular',
     'React',
-    
+
     'Big Data',
     'Mobile',
-    'BI',    
+    'BI',
     'Cobol',
     'Natural',
     'PL-SQL',
     'SharePoint',
-    'ר"צ פיתוח',    
+    'ר"צ פיתוח',
     'GIS',
     '++C/C',
     'T-SQL',
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
 
   initializeForm() {
     this.searchForm = this.fb.group({
-      salry: [''],
+      salary: [''],
       withoutSalry: [''],
       profession: [''],
       toppings: [''],
@@ -69,33 +69,15 @@ export class AppComponent implements OnInit {
   onSubmit() {
     const values = this.searchForm.value;
     console.log(values);
-   
-    this.extensionsService.searchJobs(values)
 
-
-    .subscribe({
-      next: response => {
-        this.openSnackBar(response);
-        console.log(response);
-    //     console.log( response['activeInstallCount']);
-    //     this.addonData = response;
-    // סמדר
-    //איתמר
-    // 
-    // בזום 9.5
-    // אוקי, אהה.
-    // 
-    //     console.log(  this.addonData['activeInstallCount']);
-       }
-     });
-  }
-
-  openSnackBar(text: string) {
-    this._snackBar.open(text, 'אישור', {
-      horizontalPosition: 'right',
-      verticalPosition: 'bottom',
-      duration: 1000,
-      
-    });
+    this.jobsService.searchJobs(values)
+      .subscribe({
+        next: response => {
+          console.log(response);
+          //     console.log( response['activeInstallCount']);
+          //     this.addonData = response;
+          //     console.log(  this.addonData['activeInstallCount']);
+        }
+      });
   }
 }

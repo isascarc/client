@@ -1,0 +1,8 @@
+ input.salary::-webkit-outer-spin-button,
+ input.salary::-webkit-inner-spin-button {
+     display: none;
+ }
+
+ input.salary {
+     -moz-appearance: textfield;
+ }
