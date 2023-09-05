@@ -14,7 +14,7 @@ export class SearchComponent {
   searchForm: FormGroup = new FormGroup({});
   addonData: any | undefined;
 
-  constructor(private fb: FormBuilder, public extensionsService: JobsService, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, public jobsService: JobsService, private _snackBar: MatSnackBar) { }
 
   autoTicks = false;
   includeWithoutSalry = false;
@@ -68,7 +68,7 @@ export class SearchComponent {
     const values = this.searchForm.value;
     console.log(values);
 
-    this.extensionsService.searchJobs(values)
+    this.jobsService.searchJobs(values)
       .subscribe({
         next: response => {
           this.jobs = response;

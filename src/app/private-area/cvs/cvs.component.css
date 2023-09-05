@@ -1,0 +1,15 @@
+h1 {
+  font-size: 48px;
+  text-align: center;
+  color: blueviolet;
+}
+
+button {
+  margin-right: 8px;
+}
+
+.file-input {
+  display: none;
+}
+
+/*-----------*/

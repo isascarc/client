@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { JobsService } from './_services/jobs.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from './_models/user';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,7 @@ export class AppComponent implements OnInit {
   addonData: any | undefined;
 
 
-  constructor(private fb: FormBuilder, public jobsService: JobsService, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private accounService: AccountService, public jobsService: JobsService, private _snackBar: MatSnackBar) { }
 
 
   autoTicks = false;
@@ -29,55 +31,17 @@ export class AppComponent implements OnInit {
 
   toppings = new FormControl('');
 
-  professions: string[] = ['מפתח תוכנה', 'test'];
-  toppingList: string[] = [
-    'Java',
-    'Net.',
-    'Node.js',
-    'Python',
 
-    'Angular',
-    'React',
-
-    'Big Data',
-    'Mobile',
-    'BI',
-    'Cobol',
-    'Natural',
-    'PL-SQL',
-    'SharePoint',
-    'ר"צ פיתוח',
-    'GIS',
-    '++C/C',
-    'T-SQL',
-    'חומרה',];
-
-  ngOnInit(): void {
-    this.initializeForm();
+  ngOnInit(): void { 
+    this.setCorrectuser();
   }
 
-  initializeForm() {
-    this.searchForm = this.fb.group({
-      salary: [''],
-      withoutSalry: [''],
-      profession: [''],
-      toppings: [''],
-      haveToar: [''],
-    });
-  }
 
-  onSubmit() {
-    const values = this.searchForm.value;
-    console.log(values);
-
-    this.jobsService.searchJobs(values)
-      .subscribe({
-        next: response => {
-          console.log(response);
-          //     console.log( response['activeInstallCount']);
-          //     this.addonData = response;
-          //     console.log(  this.addonData['activeInstallCount']);
-        }
-      });
-  }
+  setCorrectuser() {
+    const userString = localStorage.getItem('user');
+    if (!userString)
+      return;
+    const user: User = JSON.parse(userString);
+    this.accounService.setCurrentUser(user);
+  }   
 }

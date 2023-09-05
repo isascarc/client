@@ -6,12 +6,11 @@ import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
   templateUrl: './select-input.component.html',
   styleUrls: ['./select-input.component.css']
 })
+
 export class SelectInputComponent implements ControlValueAccessor {
   @Input() label = '';
-  @Input() options = [''];
+  @Input() options :  Map<number, string> = new  Map<number, string>();
   @Input() multiple = false;
-
-
 
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
@@ -23,7 +22,7 @@ export class SelectInputComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {
   }
 
-  get control(): FormControl {
+  get control():  FormControl {
     return this.ngControl.control as FormControl
   }
 }

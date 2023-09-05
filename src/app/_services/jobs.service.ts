@@ -14,9 +14,12 @@ export class JobsService {
   public searchJobs(query: any) {
     return this.http.get<Job[]>(`${this.baseUrl}GetJobs?haveToar=${query.haveToar}&salary=${query.salry}&haveEnglish=${query.haveEnglish}`);
   }
-
-  public createJob(query: any) {
-    return this.http.post<boolean>(`${this.baseUrl}create`,query);
+  
+  public getMySavedJobs() {
+    return this.http.get<Job[]>(`${this.baseUrl}get-My-Saved-Jobs`);
   }
- 
+
+  public createJob(query: any) {   
+    return this.http.post<boolean>(`${this.baseUrl}`,query);
+  } 
 }

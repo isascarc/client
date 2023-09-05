@@ -7,22 +7,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  registerMode=false;
+  registerMode = false;
 
   constructor() { }
 
   ngOnInit(): void {
     this.initializeForm();
-  }  
+  }
 
   initializeForm() {
   }
 
-  CreateJobToggle(){
+  CreateJobToggle() {
     this.registerMode = !this.registerMode;
   }
 
-  cancelRegisterMode(event:boolean){
-    this.registerMode=event;
+  cancelRegisterMode(event: boolean) {
+    this.registerMode = event;
   }
 }
