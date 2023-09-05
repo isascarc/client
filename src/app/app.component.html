@@ -1,17 +1,4 @@
-<mat-card class="card">
-  <mat-card-content>
-
-    <div class="d-flex justify-content-center"> extension trends</div>
-    <form class="m-3 mt-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="col">
-        <mat-form-field [color]="'accent'">
-          <input matInput placeholder="Extension ID" value="eeagobfjdenkkddmbclomhiblgggliao" formControlName="crxId">
-        </mat-form-field>
-      </div>
-      <div class="col d-flex justify-content-end">
-        <button mat-raised-button color="primary" mat-margin-xl>Get data</button>
-      </div>
-    </form>
-    
-  </mat-card-content>
-</mat-card>
+<div class="container m-4" dir="rtl">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+</div>

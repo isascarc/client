@@ -1,0 +1,46 @@
+<mat-card *ngIf="str" class="" class="container card m-2 p-3 w-50 justify-content-center">
+    <h1>קורות החיים שלי</h1>
+    <div class="col-2 mt-5">
+        <button class="col m-2" mat-raised-button color="warn" type="button" (click)="downloadAllCvs()">
+            <mat-icon>folder_open</mat-icon> הורד הכל
+        </button>
+        <button class="col m-2" mat-raised-button color="warn" type="button" (click)="downloadAsExcel()">
+            <img width="20" alt="Microsoft Office Excel (2019–present)"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/32px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png">
+            הורד בגליון אקסל
+        </button>
+        <button class="col m-2" mat-raised-button color="warn" (click)="fileUpload.click()" type="button">
+            <mat-icon>attach_file</mat-icon>העלה קובץ חדש
+        </button>
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+    </div>
+
+
+    <div *ngFor="let cv of str; index as i" class="d-flex bd-highlight mt-1">
+        <div class="col-2 w-25">
+            <div class="p-2 bd-highlight">
+                <div class="px-2 bd-highlight text-primary">{{cv.name}}</div>
+                <div class="p-2 bd-highlight">{{cv.dateOfAdded | date:'dd-MM-yyyy'}}</div>
+            </div>
+        </div>
+
+        <div class="col-2 w-25">
+            <div class="p-2 bd-highlight">
+                <button class="col m-2 w-100"  mat-stroked-button color="warn" type="button" [disabled]='cv.isDefault'
+                    (click)="setAsDefault(i)">{{setAsdefault(cv.isDefault)}}</button>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="p-2 bd-highlight">
+                <button class="col m-2" mat-stroked-button color="accent" type="button"
+                    (click)="changeName(i, cv.name)">שנה שם</button>
+                <button class="col m-2" mat-stroked-button color="accent" type="button"
+                    (click)="downloadFile(i)">הורד</button>
+                <button class="col m-2" mat-stroked-button color="primary" type="button"
+                    (click)="deleteCv(i)">מחק</button>
+
+            </div>
+        </div>
+    </div>
+</mat-card>

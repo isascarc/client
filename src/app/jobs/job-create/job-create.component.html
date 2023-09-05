@@ -1,0 +1,46 @@
+<div class="m-2 p-3   justify-content-center w-50">
+    <mat-card class="card">
+        <form [formGroup]="searchForm" class="m-2 p-3" (ngSubmit)="createJob()">
+            <mat-card-title class="d-flex justify-content-center">צור משרה חדשה</mat-card-title>
+            <mat-card-content>
+                <mat-form-field class="w-100">
+                    <mat-label>פרטי המשרה</mat-label>
+                    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5"
+                        cdkAutosizeMaxRows="5" formControlName="jobDetails"></textarea>
+                </mat-form-field>
+
+                <mat-form-field floatLabel="always" class="w-25" appearance="outline">
+                    <mat-label>שכר (באלפי שקלים)</mat-label>
+                    <input matInput placeholder="0" type="number" class="salary" formControlName="salary">
+                    <span matSuffix><mat-icon>attach_money</mat-icon></span>
+                </mat-form-field>
+
+                <!-- <app-select-input [formControl]="$any(searchForm.controls['profession'])" [label]="'תחום'"
+                    [options]=toppingList [multiple]=true></app-select-input> -->
+                <app-select-input [formControl]="$any(searchForm.controls['area'])" [label]="'אזור'" [options]=areasList
+                    ></app-select-input>
+                <p>דרישות:</p>
+                <mat-checkbox class="col d-flex justify-content-start m-2" formControlName="withoutSalry">
+                    לא צויין שכר</mat-checkbox>
+                <mat-checkbox class="col d-flex justify-content-start m-2" formControlName="haveToar">
+                    תואר ראשון</mat-checkbox>
+                <mat-checkbox class="col d-flex justify-content-start m-2" formControlName="haveEnglish">
+                    אנגלית ברמה גבוהה
+                </mat-checkbox>
+                <mat-checkbox class="col d-flex justify-content-start m-2" formControlName="other"
+                    [(ngModel)]="isInputEnabled">
+                    אחר:
+                </mat-checkbox>
+                <mat-form-field appearance="fill" class="mx-5">
+                    <mat-label>דרישה נוספת</mat-label>
+                    <input matInput [disabled]="!isInputEnabled" [width]="'450px'">
+                </mat-form-field>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions align="end">
+                <button type="submit" class="col m-2" mat-raised-button color="primary">צור משרה</button>
+                <button class="col m-2" mat-raised-button color="accent" (click)="cancel()">ביטול</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

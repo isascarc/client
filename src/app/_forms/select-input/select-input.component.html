@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill" class="col d-flex">
+    <mat-label>{{label}}</mat-label>
+    <mat-select [formControl]="control" [multiple]=multiple>
+        <mat-select-trigger *ngIf="multiple">
+            <span *ngIf="((control.value?.length || 0) > 0)" class="example-additional-selection">
+                נבחרו {{(control.value?.length || 0) }} ערכים
+            </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let option of options | keyvalue" [value]="option.key" >{{option.value}}</mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,6 @@
+<div class="row">
+    נמצאו {{jobs.length}} משרות
+    <div class="col-2 example-card" *ngFor="let job of jobs">
+        <app-job [jobData]='job'></app-job>
+    </div>
+</div> 

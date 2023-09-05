@@ -1,0 +1,75 @@
+/*For cards:*/
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap");
+*, *:after, *:before {
+  box-sizing: border-box;
+} 
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.card-list {
+  width: 90%;
+  max-width: 400px;
+}
+
+.card { 
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 1.25rem;
+  position: relative;
+  transition: 0.15s ease-in;
+}
+.card:hover, .card:focus-within {
+  box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(0, 0, 0, 0.1);
+  transform: translatey(-5px);
+} 
+.icon-button:hover, .icon-button:focus {
+  background-color: #EC4646;
+  color: #FFF;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+
+
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  color: #787878;
+}
+
+.card-meta:first-child:after {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentcolor;
+}
+
+.card-meta svg  {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.25em;
+}
+
+mat-icon{
+  font-size: 18px;
+}
+
+
+/*-------*/
+.short-data{
+  width: 120px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.952), 0 20px 20px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}

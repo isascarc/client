@@ -1,0 +1,76 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="row">
+
+      <!-- <a class="col-2 m-2" mat-raised-button color="primary" href="admin">עבור לאדמין</a>
+      <a class="col-2 m-2" mat-raised-button color="accent" href="">עבור לקליינט</a> -->
+
+      <!-- <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+      <img src="{{user.photoUrl || '.assets/user.png'}}" alt="user photo">
+      <a class="dropdown-toggle  text-decoration-none ms-2" dropdownToggle>Welcome {{user.username | titlecase}} </a>
+      <div class="dropdown-menu mt-3" *dropdownMenu>
+        <a class="dropdown-item" routerLink="member/edit">Edit profile</a>
+        <a class="dropdown-item" (click)="logout()">Logout</a>
+      </div>
+    </div> -->
+
+
+      <mat-form-field *ngIf="(accountService.currentUser$ | async)" id="userOptions" appearance="fill">
+        <img [src]="'assets/user.png'" alt="user photo" class="w-100">
+        <mat-select>
+          <mat-option routerLink="privateArea/private-area">אזור אישי</mat-option>
+          <mat-option routerLink="privateArea/cvs">ניהול קורות חיים</mat-option>
+          <mat-option routerLink="privateArea/AppliedJobs">משרות שפניתי אליהן</mat-option>
+          <mat-option routerLink="privateArea/savedJobs">המשרות השמורות שלי</mat-option>
+          <mat-option routerLink="privateArea/settings">הגדרות</mat-option>
+
+          <mat-option (click)="logout()">יציאה</mat-option>
+          <mat-option (click)="deleteUser()">מחק משתמש</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <!-- <form *ngIf="!(accountService.currentUser$ | async)" class="col d-flex" (ngSubmit)="login()" autocomplete="off">
+        <input name="UserName" [(ngModel)]="model.UserName" type="text" class="form-control me-2"
+          placeholder="Username">
+        <input name="Password" [(ngModel)]="model.Password" type="password" class="form-control me-2"
+          placeholder="password">
+        <button class="col m-2" mat-raised-button color="accent" type="submit">התחברות</button>
+        <a class="col-2 m-2" mat-raised-button color="accent" (click)="register()">הרשמה</a>
+      </form> -->
+
+
+
+
+
+      <div *ngIf="!(accountService.currentUser$ | async) && !(adminService.currentUser$ | async)" (ngSubmit)="login()" autocomplete="off" class="login-page">
+        <div class="login-page">
+          <!-- <button class="col m-2" mat-raised-button color="warn" type="button" [routerLink]="'admin'">
+            <mat-icon>attach_file</mat-icon>כניסה למעסיקים
+          </button> -->
+          <div class="form">
+            <form class="login-form" (ngSubmit)="login()">
+              <h1>התחברות</h1>
+              <input name="UserName" [(ngModel)]="model.UserName" type="text" placeholder="Username">
+              <input name="Password" [(ngModel)]="model.Password" type="password" placeholder="password">
+
+              <section class="mt-5">
+                <mat-slide-toggle [(ngModel)]="goToAdmin" class="col example-margin" [color]="'warn'" [ngModelOptions]="{standalone: true}">
+                  היכנס כמעסיק
+                </mat-slide-toggle>
+              </section>
+              <button class="col mt-4" mat-raised-button color="warn" type="submit">התחבר</button>
+              <p class="message mt-5">עדיין לא רשום? <a href="#" (click)="register()">צור חשבון</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!--<button mat-button [matMenuTriggerFor]="belowMenu">משרות</button>
+    <mat-menu #belowMenu="matMenu" yPosition="above">
+      <button mat-menu-item>צור משרה חדשה</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu> -->
+    </div>
+  </div>
+</nav>
