@@ -12,21 +12,10 @@ import { cvs } from '../_models/cvs';
 export class CvsService {
   baseUrl = environment.baseUrl;
 
-  /*
-  שרה והיתה עוד אחת.
-  חבר ממשרד רו"ח - שנה שעברה
-  לגבי השכר: 18 זה בסדר.
-
-  מחר ב10
-  3-4 שעות
-  דיבאונדס
-  אפילו לא JS כ10 דק'
-  */
-
   constructor(private http: HttpClient) { }
 
   setAsDefault(cvNumber: number) {
-    return this.http.put(`${this.baseUrl}user/cv/set-cv-as-default/${cvNumber}`, {});
+    return this.http.put(`${this.baseUrl}user/cv/set-as-default/${cvNumber}`, {});
   }
 
 
@@ -35,7 +24,7 @@ export class CvsService {
   }
   
   downloadAllCvs(): Observable<HttpResponse<Blob>> {
-    return this.http.get<Blob>(`${this.baseUrl}user/cv/`, { observe: 'response', responseType: 'blob' as 'json' });
+    return this.http.get<Blob>(`${this.baseUrl}user/cv/as-zip`, { observe: 'response', responseType: 'blob' as 'json' });
   }
   
   downloadAsExcel(): Observable<HttpResponse<Blob>> {

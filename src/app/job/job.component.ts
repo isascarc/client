@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Job } from '../_modules/job';
 import { AccountService } from '../_services/account.service';
+import { JobsComponent } from '../jobs/jobs.component';
+import { JobsService } from '../_services/jobs.service';
 
 @Component({
   selector: 'app-job',
@@ -9,9 +11,15 @@ import { AccountService } from '../_services/account.service';
 })
 export class JobComponent implements OnInit {
   @Input() jobData!: Job;
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,private jobService: JobsService) { }
 
   ngOnInit(): void {
+  }
+
+  addToFivorate(jobId:number) {// ToDO
+    this.jobService.saveJob(jobId).subscribe({
+      next: x => console.log(x)
+    })
   }
   sendEmail(jobId:number) {
     this.accountService.sendJobInEmail(jobId, '').subscribe({
