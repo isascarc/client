@@ -66,7 +66,7 @@ export class AccountService {
   }
 
   loadCvs() {
-    return this.http.get<cvs[]>(`${this.baseUrl}user/cv/Get-all`);
+    return this.http.get<cvs[]>(`${this.baseUrl}user/cv/`);
   }
 
   sendEmail() {

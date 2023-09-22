@@ -44,7 +44,7 @@ export class CvsComponent implements OnInit {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("name", file.name);
-      this.http.post(`${this.baseUrl}user/cv/add`, formData, { observe: 'response' }).subscribe({
+      this.http.post(`${this.baseUrl}user/cv/`, formData, { observe: 'response' }).subscribe({
         next: (x) => { console.log(x); this.reloadCurrentPage(); }
       });
     }
@@ -54,7 +54,6 @@ export class CvsComponent implements OnInit {
     this.cvsService.setAsDefault(cvNumber).subscribe({
       next: () => {
         this.str!.forEach(x => { x.isDefault = false; });
-
         this.str![cvNumber].isDefault = true;
       }
     });
@@ -73,7 +72,6 @@ export class CvsComponent implements OnInit {
   downloadFile(cvNumber: number) {
     this.cvsService.downloadFile(cvNumber).pipe(take(1))
       .subscribe((response) => {
-
         this.getFile(response)
       })
   }

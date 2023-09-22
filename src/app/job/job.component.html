@@ -16,13 +16,16 @@
     <mat-card-actions class="col d-flex justify-content-end">
         <div class="mt-3">
             <button mat-raised-button color="primary">שלח לינקדין</button>
-            <button mat-raised-button color="primary">הוסף למועדפים</button>
+            <button mat-raised-button color="primary" (click)="addToFivorate(jobData.id)">הוסף למועדפים</button>
             <button mat-raised-button color="primary">הגש מועמדות</button>
-            <button mat-raised-button color="warn" type="button" (click)="sendEmail(jobData.id)">
+            <button mat-raised-button color="warn" (click)="sendEmail(jobData.id)">
                 שלח למייל
             </button>
-            <!-- <a href="https://api.whatsapp.com/send?text=https://www.dialog.co.il/high-tech/jobs/jobpage?positionId=88539"
-                target="_blank">בווטסאפ</a> -->
+            <!--
+
+    all.GetShifts(
+                אלעזר
+                                <a href="https://api.whatsapp.com/send?text=https://www.dialog.co.il/high-tech/jobs/jobpage?positionId=88539" target="_blank">בווטסאפ</a> -->
         </div>
     </mat-card-actions>
     <mat-card-footer> {{jobData.dateOfAdded | date:'dd-MM-yyyy'}} | {{ jobData.salary }},000</mat-card-footer>
