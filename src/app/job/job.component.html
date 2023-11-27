@@ -1,32 +1,61 @@
-<mat-card class="example-card m-3">
-    <mat-card-header class="col d-flex justify-content-center example-card m-3 m-2">
-        <mat-card-title>
+<div class="mx-auto w-75">
+    <mat-card class="example-card m-3">
+
+        <!--Like button-->
+        <div class="position-relative">
+            <div class="position-absolute top-0 start-0">
+                <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
+                    <input type="checkbox" id="a{{jobData.id}}" class="heart-check mx-5" mat-raised-button
+                        (click)="rotateFivorate(jobData.isSaved, jobData.id)" [checked]=jobData.isSaved>
+                    <label for="a{{jobData.id}}" id="heart">
+                        <svg viewBox="0 0 24 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path id="initial"
+                                d="M11.8189091,20.3167303 C17.6981818,16.5505143 20.6378182,12.5122542 20.6378182,8.20195014 C20.6378182,5.99719437 18.8550242,4 16.3283829,4 C13.777264,4 12.5417153,6.29330284 11.8189091,6.29330284 C11.0961029,6.29330284 10.1317157,4 7.30943526,4 C4.90236126,4 3,5.64715533 3,8.20195014 C3,12.5122346 5.93963637,16.5504946 11.8189091,20.3167303 Z">
+                            </path>
+                            <path id="stroke" fill="none"
+                                d="M11.8189091,20.3167303 C17.6981818,16.5505143 20.6378182,12.5122542 20.6378182,8.20195014 C20.6378182,5.99719437 18.8550242,4 16.3283829,4 C13.4628072,4 10.284995,6.64162063 10.284995,8.70392731 C10.284995,10.0731789 10.8851209,10.9874447 11.8189091,10.9874447 C12.7526973,10.9874447 13.3528232,10.0731789 13.3528232,8.70392731 C13.3528232,6.64162063 10.1317157,4 7.30943526,4 C4.90236126,4 3,5.64715533 3,8.20195014 C3,12.5122346 5.93963637,16.5504946 11.8189091,20.3167303 Z">
+                            </path>
+                        </svg>
+                    </label>
+                </button>
+            </div>
+        </div>
+
+        <mat-card-title class="col d-flex justify-content-center example-card mt-3">
             <h2>{{ jobData.id }}</h2>
         </mat-card-title>
-        <mat-card-subtitle>{{jobData.dateOfAdded | date:'dd-MM-yyyy'}} | {{ jobData.salary }},000</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="d-flex">
-        <div class="p-2 flex-grow-1">{{ jobData.text }}</div>
-        
-    </mat-card-content>
-    <div class="card-meta">
-        {{jobData.dateOfAdded | date:'dd-MM-yyyy'}} | {{ jobData.salary }},000<mat-icon>attach_money</mat-icon>
-    </div>
-     
-    <mat-card-actions class="col d-flex justify-content-end">
-        <div class="mt-3">
-            <button mat-raised-button color="primary">שלח לינקדין</button>
-            <button mat-raised-button color="primary" (click)="addToFivorate(jobData.id)">הוסף למועדפים</button>
-            <button mat-raised-button color="primary">הגש מועמדות</button>
-            <button mat-raised-button color="warn" (click)="sendEmail(jobData.id)">
-                שלח למייל
-            </button>
-            <!--
+        <mat-card-subtitle class="col d-flex justify-content-end ms-3">
+            {{jobData.dateOfAdded | date:'dd-MM-yyyy'}} |
+            {{ jobData.salary }},000
+        </mat-card-subtitle>
+        <mat-card-content class="d-flex">
+            <div class="p-2 flex-grow-1">{{ jobData.text }}</div>
+        </mat-card-content>
 
-    all.GetShifts(
-                אלעזר
-                                <a href="https://api.whatsapp.com/send?text=https://www.dialog.co.il/high-tech/jobs/jobpage?positionId=88539" target="_blank">בווטסאפ</a> -->
-        </div>
-    </mat-card-actions>
-    <mat-card-footer> {{jobData.dateOfAdded | date:'dd-MM-yyyy'}} | {{ jobData.salary }},000</mat-card-footer>
-</mat-card>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>unarchive</mat-icon>
+                <span>שלח לינקדין</span>
+            </button>
+        </mat-menu>
+
+        <!--Footer buttons-->
+        <mat-card-footer class="d-flex justify-content-end">
+            <div class="m-4">
+                <button id='arrow_d' mat-raised-button [matMenuTriggerFor]="menu" color="warn" class="m-0">
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <button mat-raised-button class="mr-1" color="primary" (click)="createApplicant(jobData.id)">הגש
+                    מועמדות</button>
+
+                <button mat-stroked-button color="warn" (click)="sendEmail(jobData.id)">
+                    שלח למייל
+                </button>
+
+                <!--all.GetShifts(<a href="https://api.whatsapp.com/send?text=https://www.dialog.co.il/high-tech/jobs/jobpage?positionId=88539" target="_blank">בווטסאפ</a> -->
+            </div>
+        </mat-card-footer>
+    </mat-card>
+</div>

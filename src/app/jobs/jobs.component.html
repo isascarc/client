@@ -1,6 +1,9 @@
-<div class="row">
-    נמצאו {{jobs.length}} משרות
-    <div class="col-2 example-card" *ngFor="let job of jobs">
-        <app-job [jobData]='job'></app-job>
-    </div>
-</div> 
+<div class="mx-auto w-75">
+    <mat-card class="example-card mt-3 text-center">
+        <h1>נמצאו {{jobs.length}} משרות</h1>
+    </mat-card>
+</div>
+
+<div class="col-2 example-card" *ngFor="let job of jobs">
+    <app-job [jobData]=job></app-job>
+</div>

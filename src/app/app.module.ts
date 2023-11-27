@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -19,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 import { MatNativeDateModule } from '@angular/material/core';
@@ -26,20 +26,19 @@ import { SelectInputComponent } from './_forms/select-input/select-input.compone
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AdminComponent } from './admin/admin.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobComponent } from './job/job.component';
-import { Routes } from '@angular/router';
+
 import { JobCreateComponent } from './jobs/job-create/job-create.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { AppComponent } from './app.component';
+
+import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 
 
-import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
- 
-
-import { ToastrModule  } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
@@ -51,9 +50,11 @@ import { SavedJobsComponent } from './private-area/saved-jobs/saved-jobs.compone
 import { SettingsComponent } from './private-area/settings/settings.component';
 import { CvsComponent } from './private-area/cvs/cvs.component';
 import { PrivateAreaComponent } from './private-area/private-area/private-area.component';
+import { RecruiterAreaComponent } from './recruiter/private-area/private-area.component';
+import { JobsManagerComponent } from './recruiter/jobs/jobs.component';
 
-import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { HomeComponent } from './home/home.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // 
 
@@ -64,26 +65,25 @@ import { HomeComponent } from './home/home.component';
     SelectInputComponent,
     SearchComponent,
     NavbarComponent,
-    AdminComponent,
+    
     JobsComponent,
     JobComponent,
     JobCreateComponent,
     SelectInputComponent,
     TextInputComponent,
     RegisterComponent,
-    
+
     AppliedJobsComponent,
     SavedJobsComponent,
     SettingsComponent,
     CvsComponent,
     PrivateAreaComponent,
-    
-    AdminLoginComponent,
-         HomeComponent,
-         
-    
-    
 
+    HomeComponent,
+
+
+    RecruiterAreaComponent,
+    JobsManagerComponent,
   ],
 
   imports: [
@@ -91,7 +91,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
 
     MatDividerModule,
-    
+
     HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -113,25 +113,27 @@ import { HomeComponent } from './home/home.component';
     MatSelectModule,
     NgxSliderModule,
     MatSnackBarModule,
-
+    MatAutocompleteModule,
     MatIconModule,
     MatMenuModule,
 
     MatButtonModule,
     MatDialogModule,
 
+
+    MatButtonToggleModule,
+
     ToastrModule.forRoot({
-      positionClass:'toast-bottom-right'
+      positionClass: 'toast-bottom-right'
     }),
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass: LoadingInterceptor,multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
 
 //oy2gcwyrdngey5sppxvag46ycpz2cfaute3ftawtivg43i

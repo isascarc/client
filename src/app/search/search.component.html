@@ -17,6 +17,8 @@
           <app-select-input [formControl]="$any(searchForm.controls['toppings'])" [label]="'תחום'" [options]=toppingList
             [multiple]=true></app-select-input> -->
 
+          <app-select-input [formControl]="$any(searchForm.controls['area'])" [label]="'אזור'"
+            [options]=areasList></app-select-input>
           <label class="col d-flex justify-content-start example-value-label m-2">שכר (באלפי שקלים): {{value}}</label>
           <div class="col d-flex justify-content-start m-1" appearance="fill">
             <mat-slider formControlName="salry" class="example-margin m-0" [max]="max" [min]="min" [step]="step"
@@ -31,7 +33,7 @@
     </mat-card>
   </div>
 
-  <div  class="p-3 flex-fill" *ngIf="jobs.length>0">
+  <div class="p-3 flex-fill" *ngIf="jobs.length>0">
     <app-jobs [jobs]="jobs"></app-jobs>
   </div>
 </div>

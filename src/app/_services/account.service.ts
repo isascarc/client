@@ -45,7 +45,7 @@ export class AccountService {
 
   deleteUser() {
     let jwt = localStorage.getItem('user');
-    return this.http.delete(`${this.baseUrl}account/delete`).subscribe({
+    return this.http.delete(`${this.baseUrl}account`).subscribe({
       next: x => console.log(x)
     });
   }
@@ -56,7 +56,7 @@ export class AccountService {
   }
 
   getUserData() {
-    return this.http.get<Member>(`${this.baseUrl}Account/Get-User-Data`);
+    return this.http.get<Member>(`${this.baseUrl}Account/User-Data`);
   }
 
   setUserData(member: any) {

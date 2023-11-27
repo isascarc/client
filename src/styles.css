@@ -14,6 +14,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
 body {
   background-size: cover; 
   /* overflow: hidden; */
@@ -25,3 +26,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+
+
+
+:root {
+  --color-blue: rgb(78, 101, 203);
+  --color-purple: rgb(113,75,128);
+  --color-pink: rgb(203, 66, 116);
+  --transition-time: 500ms;
+  --transition-ease: cubic-bezier(.1,.7,.8,.3);
+} 

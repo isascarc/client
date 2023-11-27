@@ -5,4 +5,6 @@ export interface Job {
     id: number;
     salary: number;
     text: string;
+    
+    isSaved: boolean;
   }

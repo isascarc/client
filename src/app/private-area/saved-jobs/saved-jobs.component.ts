@@ -9,20 +9,17 @@ import { JobsService } from 'src/app/_services/jobs.service';
 })
 export class SavedJobsComponent implements OnInit {
 
-  constructor( public JobsService: JobsService) { }
+  constructor(public JobsService: JobsService) { }
   jobs: Job[] = [];
-  
+
   ngOnInit(): void {
     this.loadJobs();
   }
 
   loadJobs(): void {
-     this.JobsService.getMySavedJobs()
+    this.JobsService.getMySavedJobs()
       .subscribe({
-        next: response => {
-          this.jobs = response;
-          console.log(response);
-        }
+        next: response => this.jobs = response
       });
   }
 }

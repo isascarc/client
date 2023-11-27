@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Member } from 'src/app/_models/member';
 import { AccountService } from 'src/app/_services/account.service';
 import { JobsService } from 'src/app/_services/jobs.service';
@@ -17,12 +18,13 @@ export class SettingsComponent implements OnInit {
 
   user: Member | undefined;
 
-  constructor(private fb: FormBuilder, public jobsService: JobsService, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, public jobsService: JobsService, private accountService: AccountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.accountService.getUserData().subscribe({
       next: x => {
         console.log(x);
+
         this.user = x
       }
     });
@@ -37,24 +39,16 @@ export class SettingsComponent implements OnInit {
       city: [''],
       LinkedinLink: [''],
       websiteLink: [''],
+      showMe: true,
     });
   }
 
   onSubmit() {
-    const values = this.searchForm.value;
-    console.log(values);
-
-    this.accountService.setUserData(values)
+    this.accountService.setUserData(this.searchForm.value)
       .subscribe({
         next: response => {
-          console.log(response);
+          this.toastr.success('הנתונים עודכנו בהצלחה!');
         }
       });
-  }
-
-  sendEmail() {
-    this.accountService.sendEmail().subscribe({
-      next: x => console.log(x)
-    })
   }
 }

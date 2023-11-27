@@ -25,6 +25,7 @@ export class JobCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.loadAreas();
 
     this.areasList.set(1, "ירושלים");
     this.areasList.set(2, "מרכז");
@@ -47,41 +48,28 @@ export class JobCreateComponent implements OnInit {
       salary: [0],
       haveEnglish: [true],
       withoutSalry: [''],
-
       profession: 'e',
       toppings: [''],
       haveToar: [false],
-      jobDetails: '',
+      text: '',
       area: 0,
       other: [''],
-
     });
   }
+  
+  loadAreas(){
+    this.jobService.loadAreas().subscribe(x => {
+      let parsedObject = JSON.parse(JSON.stringify(x));
 
-  // toppingList: string[] = [
-  //   'Java',
-  //   'Net.',
-  //   'Node.js',
-  //   'Python',
-
-  //   'Angular',
-  //   'React',
-
-  //   'Big Data',
-  //   'Mobile',
-  //   'BI',
-  //   'Cobol',
-  //   'Natural',
-  //   'PL-SQL',
-  //   'SharePoint',
-  //   'GIS',
-  //   '++C/C',];
-
-
-
-
-
-
+      for (const key in x) {
+        if (parsedObject.hasOwnProperty(key)) {
+          const numericKey = parseInt(key, 10); // Convert the key to a number
+          this.areasList.set(numericKey, parsedObject[key]);
+        }
+      }
+      console.log(this.areasList);
+    });
+  }
 
   cancel() {
     this.cancelCreate.emit(false);

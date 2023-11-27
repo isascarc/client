@@ -30,7 +30,10 @@ export class NavbarComponent implements OnInit {
     }
     else {
       this.adminService.login(this.model).subscribe({
-        next: _ => this.router.navigateByUrl('/admin'),
+        next: _ => {
+          this.accountService.setCurrentUser(this.adminService.currentUserSource.getValue()!);
+          this.router.navigateByUrl('/admin');
+        },
         error: err => this.toastr.error(err.error)
       })
     }

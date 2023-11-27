@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { JobsService } from '../_services/jobs.service';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Job } from '../_modules/job';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +17,13 @@ export class SearchComponent {
 
   constructor(private fb: FormBuilder, public jobsService: JobsService, private _snackBar: MatSnackBar) { }
 
+  areasList: Map<number, string> = new Map<number, string>();
+  toppingList: Map<number, string> = new Map<number, string>();
+
+
+
+
+
   autoTicks = false;
   includeWithoutSalry = false;
   haveToar = false;
@@ -27,30 +35,33 @@ export class SearchComponent {
   value = 10;
 
   professions: string[] = ['מפתח תוכנה', 'test'];
-  toppingList: string[] = [
-    'Java',
-    'Net.',
-    'Node.js',
-    'Python',
+  // toppingList: string[] = [
+  //   'Java',
+  //   'Net.',
+  //   'Node.js',
+  //   'Python',
 
-    'Angular',
-    'React',
+  //   'Angular',
+  //   'React',
 
-    'Big Data',
-    'Mobile',
-    'BI',
-    'Cobol',
-    'Natural',
-    'PL-SQL',
-    'SharePoint',
-    'ר"צ פיתוח',
-    'GIS',
-    '++C/C',
-    'חומרה',];
+  //   'Big Data',
+  //   'Mobile',
+  //   'BI',
+  //   'Cobol',
+  //   'Natural',
+  //   'PL-SQL',
+  //   'SharePoint',
+  //   'ר"צ פיתוח',
+  //   'GIS',
+  //   '++C/C',
+  //   'חומרה',];
 
   jobs: Job[] = [];
+
+  
   ngOnInit(): void {
     this.initializeForm();
+    this.loadAreas();
   }
 
   initializeForm() {
@@ -61,9 +72,24 @@ export class SearchComponent {
       profession: [''],
       toppings: [''],
       haveToar: [''],
+      area: 1,
     });
   }
 
+  loadAreas(){
+    this.jobsService.loadAreas().subscribe(x => {
+      let parsedObject = JSON.parse(JSON.stringify(x));
+
+      for (const key in parsedObject) {
+        if (parsedObject.hasOwnProperty(key)) {
+          const numericKey = parseInt(key, 10); // Convert the key to a number
+          this.areasList.set(numericKey, parsedObject[key]);
+        }
+      }
+      console.log(this.areasList);
+    });
+  }
+  
   onSubmit() {
     const values = this.searchForm.value;
     console.log(values);

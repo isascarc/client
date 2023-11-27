@@ -16,5 +16,6 @@ export interface Member {
     phone: string;
     linkedinLink: string;
     websiteLink: string;
+    showMe: string;
 }
 

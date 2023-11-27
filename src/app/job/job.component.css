@@ -1,8 +1,10 @@
 /*For cards:*/
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap");
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
-} 
+}
 
 img {
   max-width: 100%;
@@ -14,7 +16,7 @@ img {
   max-width: 400px;
 }
 
-.card { 
+.card {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 20px 50px 0 rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   overflow: hidden;
@@ -22,13 +24,15 @@ img {
   position: relative;
   transition: 0.15s ease-in;
 }
-.card:hover, .card:focus-within {
-  box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(0, 0, 0, 0.1);
+.card:hover,
+.card:focus-within {
+  box-shadow: 0 0 0 2px #16c79a, 0 10px 60px 0 rgba(0, 0, 0, 0.1);
   transform: translatey(-5px);
-} 
-.icon-button:hover, .icon-button:focus {
-  background-color: #EC4646;
-  color: #FFF;
+}
+.icon-button:hover,
+.icon-button:focus {
+  background-color: #ec4646;
+  color: #fff;
 }
 
 .card-footer {
@@ -36,10 +40,6 @@ img {
   align-items: center;
   flex-wrap: wrap;
 }
-
-
-
-
 
 .card-meta {
   display: flex;
@@ -55,21 +55,144 @@ img {
   background-color: currentcolor;
 }
 
-.card-meta svg  {
+.card-meta svg {
   flex-shrink: 0;
   width: 1em;
   height: 1em;
   margin-right: 0.25em;
 }
 
-mat-icon{
+mat-icon {
   font-size: 18px;
 }
 
-
 /*-------*/
-.short-data{
+.short-data {
   width: 120px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.952), 0 20px 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.952),
+    0 20px 20px 0 rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+}
+
+button {
+  margin-left: 8px;
+}
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.toggle {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  place-items: center;
+  place-content: center;
+}
+.toggle:hover {
+  background-color: rgba(203, 66, 116, 0.1);
+}
+
+.heart-check {
+  position: absolute;
+  visibility: hidden;
+}
+
+#heart {
+  cursor: pointer;
+}
+#heart svg {
+  width: 24px;
+}
+#heart #stroke {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  stroke-linecap: round;
+  stroke-width: 2.5;
+}
+#heart #initial {
+  stroke-width: 1.5;
+  stroke: var(--color-pink);
+  fill: transparent;
+}
+
+.heart-check:checked + #heart svg {
+  transform-origin: 50% 50%;
+  animation: heart var(--transition-time) cubic-bezier(0.64, -1.5, 0.64, 1.5);
+  animation-fill-mode: forwards;
+}
+.heart-check:checked + #heart #initial {
+  display: none;
+}
+.heart-check:checked + #heart #stroke {
+  animation: stroke var(--transition-time) var(--transition-ease);
+  animation-fill-mode: forwards;
+}
+
+@keyframes heart {
+  from {
+    transform: scale(1);
+  }
+  78% {
+    transform: scale(1.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes stroke {
+  from {
+    stroke: var(--color-blue);
+    fill: transparent;
+  }
+  50% {
+    stroke: var(--color-purple);
+  }
+  85% {
+    fill: transparent;
+  }
+  to {
+    stroke-dashoffset: 0;
+    stroke: var(--color-pink);
+    fill: var(--color-pink);
+  }
+}
+
+#arrow_d {
+  min-width: 1%;
+  min-width: 20px;
+  width: 20px;
+  vertical-align: top;
+  font-size: 18px;
+  padding: 0 0;
+  margin: 0;
 }
