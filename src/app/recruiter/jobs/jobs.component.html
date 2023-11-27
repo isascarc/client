@@ -25,9 +25,9 @@
       <mat-label>First Name</mat-label>
       <input matInput formControlName="firstname" [matAutocomplete]="auto" [matAutocompleteConnectedTo]="origin">
       <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="setFormData($event)">
-        <mat-option *ngFor="let physician of physicians " [value]="physician">
+        <mat-option *ngFor="let physician of physicians " [value]="physician.k">
           <div style="display:flex;flex-wrap: nowrap;align-items:center;justify-content:center;margin: auto;">
-            <span style="flex-grow: 1;flex: 1 1 33%;">{{physician.toString() | titlecase}} {{physician.toString() | titlecase}}</span>
+            <span style="flex-grow: 1;flex: 1 1 33%;">{{physician.v | titlecase}} {{physician.v | titlecase}}</span>
           </div>
         </mat-option>
       </mat-autocomplete>
